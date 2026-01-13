@@ -5,6 +5,7 @@ import avatar from "../assets/avator.png";
 import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
 import { FaYoutube, FaInstagram } from "react-icons/fa6";
 import ParticleBackground from "../components/ParticlesBackground";
+import Hero3DScene from "../components/Hero3DScene";
 
 const socials = [
   { Icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@gauravbitss" },
@@ -63,6 +64,7 @@ const Home = React.forwardRef((props, ref) => {
       className="h-screen w-full relative overflow-hidden bg-black"
     >
       <ParticleBackground />
+      <Hero3DScene />
 
       {/* gradient blobs */}
       <div className="absolute inset-0">
