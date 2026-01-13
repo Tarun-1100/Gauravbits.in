@@ -1,36 +1,15 @@
-
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import avatar from "../assets/avator.png";
-import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
-import { FaYoutube, FaInstagram } from "react-icons/fa6";
-import ParticleBackground from "../components/ParticlesBackground";
-import Hero3DScene from "../components/Hero3DScene";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { SiKaggle, SiMedium } from "react-icons/si";
+import DataHero3D from "../components/DataHero3D";
 
 const socials = [
-  { Icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@gauravbitss" },
-  { Icon: FaXTwitter, label: "X", href: "https://x.com/gauravbuilds" },
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/gaurav-gupta-4179671b0/" },
-  { Icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/gauravbits/" },
-  { Icon: FaGithub, label: "GitHub", href: "https://github.com/gauravgupta364" },
+  { Icon: FaLinkedinIn, label: "LinkedIn", href: "#" },
+  { Icon: FaGithub, label: "GitHub", href: "#" },
+  { Icon: SiKaggle, label: "Kaggle", href: "#" },
+  { Icon: SiMedium, label: "Medium", href: "#" },
 ];
-
-
-const glowVariants = {
-  initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
-  hover: {
-    scale: 1.2,
-    y: -3,
-    filter:
-      "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(16,185,129,0.8))",
-    transition: { type: "spring", stiffness: 300, damping: 15 },
-  },
-  tap: {
-    scale: 0.95,
-    y: 0,
-    transition: { duration: 0.08 },
-  },
-};
 
 const Home = React.forwardRef((props, ref) => {
   const roles = useMemo(
@@ -41,19 +20,18 @@ const Home = React.forwardRef((props, ref) => {
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
-  // typing effect logic
   useEffect(() => {
     const current = roles[index];
     const timeout = setTimeout(() => {
       if (!deleting && subIndex < current.length) setSubIndex((v) => v + 1);
       else if (!deleting && subIndex === current.length)
-        setTimeout(() => setDeleting(true), 1200);
+        setTimeout(() => setDeleting(true), 1500);
       else if (deleting && subIndex > 0) setSubIndex((v) => v - 1);
       else if (deleting && subIndex === 0) {
         setDeleting(false);
         setIndex((p) => (p + 1) % roles.length);
       }
-    }, deleting ? 40 : 60); // original typing speed
+    }, deleting ? 30 : 70);
     return () => clearTimeout(timeout);
   }, [subIndex, deleting, index, roles]);
 
@@ -61,118 +39,126 @@ const Home = React.forwardRef((props, ref) => {
     <section
       ref={ref}
       id="home"
-      className="h-screen w-full relative overflow-hidden bg-black"
+      className="min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-[#0a0e27] via-[#16213e] to-[#0f3460]"
     >
-      <ParticleBackground />
-      <Hero3DScene />
-
-      {/* gradient blobs */}
-      <div className="absolute inset-0">
+      {/* Tech grid overlay */}
+      <div className="absolute inset-0 opacity-10">
         <div
-          className="absolute -top-32 -left-32 
-          w-[70vw] sm:w-[50vw] md:w-[40vw] 
-          h-[70vw] sm:h-[50vw] md:h-[40vw]
-          max-w-[500px] max-h-[500px]
-          rounded-full
-          bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1CD8D2]
-          opacity-30 sm:opacity-20 md:opacity-10 
-          blur-[100px] sm:blur-[130px] md:blur-[150px]
-          animate-pulse"
-        />
-        <div
-          className="absolute bottom-0 right-0 
-          w-[70vw] sm:w-[50vw] md:w-[40vw] 
-          h-[70vw] sm:h-[50vw] md:h-[40vw] 
-          max-w-[500px] max-h-[500px] 
-          rounded-full 
-          bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63] 
-          opacity-40 sm:opacity-30 
-          blur-[100px] sm:blur-[130px] md:blur-[150px] 
-          animate-pulse delay-500"
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #00d9ff 1px, transparent 1px),
+              linear-gradient(to bottom, #00d9ff 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
         />
       </div>
 
-      <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2">
-        {/* left */}
-        <motion.div
-          className="flex flex-col justify-center h-full text-center lg:text-left relative"
-          initial={{ opacity: 0, y: 120 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-        >
-          <div className="w-full lg:pr-24 mx-auto max-w-[48rem]">
-            {/* typing text */}
+      {/* 3D Background */}
+      <DataHero3D />
+
+      {/* Animated corner accents */}
+      <div className="absolute top-0 left-0 w-32 h-32 border-t-4 border-l-4 border-[#00d9ff] opacity-50" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-b-4 border-r-4 border-[#ff6b35] opacity-50" />
+
+      <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-6 lg:px-12 py-20 flex items-center">
+        <div className="w-full">
+          {/* Status bar */}
+          <motion.div
+            className="mb-8 flex items-center gap-3 text-[#00d9ff] font-mono text-sm"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="w-2 h-2 bg-[#00d9ff] rounded-full animate-pulse" />
+            <span>SYSTEM ONLINE</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#00d9ff] to-transparent" />
+          </motion.div>
+
+          {/* Main content */}
+          <div className="max-w-4xl">
+            {/* Typing role */}
             <motion.div
-              className="mb-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-wide min-h-[1.6em]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              className="mb-4 font-mono text-2xl md:text-3xl lg:text-4xl text-[#ff6b35] min-h-[3rem]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
             >
-              <span>{roles[index].substring(0, subIndex)}</span>
-              <span
-                className="inline-block w-[2px] ml-1 bg-white animate-pulse align-middle"
-                style={{ height: "1em" }}
-              />
+              &gt; {roles[index].substring(0, subIndex)}
+              <span className="animate-pulse">_</span>
             </motion.div>
 
-            {/* name */}
+            {/* Name */}
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text
-              bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63] drop-shadow-lg"
-              initial={{ opacity: 0, y: 40 }}
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Hello, I&apos;m
+              <span className="text-white">TARUN</span>
               <br />
-              <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
-                Tarun Kumar
+              <span className="bg-gradient-to-r from-[#00d9ff] via-[#9d4edd] to-[#ff6b35] text-transparent bg-clip-text">
+                KUMAR
               </span>
             </motion.h1>
 
-            {/* description */}
-            <motion.p
-              className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            >
-              I architect scalable data pipelines and build intelligent systems —
-              transforming raw data into actionable insights with cutting-edge
-              ML models and real-time analytics that drive business impact.
-            </motion.p>
-
-            {/* buttons */}
+            {/* Description */}
             <motion.div
-              className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
-              initial={{ opacity: 0, y: 40 }}
+              className="space-y-4 mb-10"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.8 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-1 h-1 bg-[#00d9ff] mt-2 rounded-full" />
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                  Building <span className="text-[#00d9ff] font-semibold">scalable data infrastructure</span> that processes terabytes of data daily
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-1 h-1 bg-[#9d4edd] mt-2 rounded-full" />
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                  Designing <span className="text-[#9d4edd] font-semibold">ML pipelines</span> that turn raw data into predictive insights
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-1 h-1 bg-[#ff6b35] mt-2 rounded-full" />
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+                  Optimizing <span className="text-[#ff6b35] font-semibold">real-time analytics</span> for data-driven decision making
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-wrap gap-4 mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
             >
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-full text-lg font-medium text-white 
-                bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63]
-                shadow-lg hover:scale-105 transition-all"
+                className="group relative px-8 py-4 bg-gradient-to-r from-[#00d9ff] to-[#9d4edd] text-black font-bold rounded-lg overflow-hidden transition-all hover:scale-105"
               >
-                View My Work
+                <span className="relative z-10">VIEW PROJECTS</span>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
               </a>
               <a
                 href="/Resume.pdf"
                 download
-                className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white 
-                hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
+                className="px-8 py-4 border-2 border-[#00d9ff] text-[#00d9ff] font-bold rounded-lg hover:bg-[#00d9ff] hover:text-black transition-all"
               >
-                My Resume
+                DOWNLOAD CV
               </a>
             </motion.div>
 
-            {/* socials */}
+            {/* Social links */}
             <motion.div
-              className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.8 }}
+              className="flex gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.8 }}
             >
               {socials.map(({ Icon, label, href }) => (
                 <motion.a
@@ -181,50 +167,25 @@ const Home = React.forwardRef((props, ref) => {
                   aria-label={label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={glowVariants}
-                  initial="initial"
-                  whileHover="hover"
-                  whileTap="tap"
-                  className="text-gray-300"
+                  className="w-12 h-12 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00d9ff] hover:border-[#00d9ff] transition-all hover:scale-110"
+                  whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Icon />
+                  <Icon className="text-xl" />
                 </motion.a>
               ))}
             </motion.div>
           </div>
-        </motion.div>
-
-        {/* right */}
-        <motion.div
-          className="relative hidden lg:block"
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 1 }}
-        >
-          <div
-            className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
-            style={{
-              right: "10px",
-              width: "min(22vw, 410px)",
-              height: "min(40vw, 760px)",
-              borderRadius: "50%",
-              filter: "blur(38px)",
-              opacity: 0.32,
-              background:
-                "conic-gradient(from 0deg, #1CD8D2, #00bf8f, #302b63, #1CD8D2)",
-            }}
-          />
-          <motion.img
-            src={avatar}
-            alt="Gaurav Gupta avatar"
-            className="absolute top-1/2 -translate-y-1/2 object-contain select-none pointer-events-none"
-            style={{ right: "-30px", width: "min(45vw, 780px)", maxHeight: "90vh" }}
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-          />
-        </motion.div>
+        </div>
       </div>
+
+      {/* Bottom status bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00d9ff] via-[#9d4edd] to-[#ff6b35]"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 1.3, duration: 1.5 }}
+      />
     </section>
   );
 });
