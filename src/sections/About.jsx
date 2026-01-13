@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import p from "../assets/p.jpg";
+import About3DScene from "../components/About3DScene";
 
 export default function About() {
   return (
@@ -8,6 +9,7 @@ export default function About() {
       className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden"
       aria-label="About me"
     >
+      <About3DScene />
       {/* Layered neon background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-10 -left-10 w-[360px] h-[360px] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1CD8D2] opacity-20 blur-[120px] animate-pulse" />

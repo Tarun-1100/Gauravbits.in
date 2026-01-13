@@ -2,6 +2,7 @@ import { useState } from "react";
 import IntroAnimation from "./components/IntroAnimation";
 import Navbar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
+import SmoothScroll from "./components/SmoothScroll";
 import Home from "./sections/Home";
 import About from "./sections/About";
 import Skills from "./sections/Skills";
@@ -24,16 +25,18 @@ export default function App() {
       {/* Intro always on top until it finishes */}
       {!introDone && <IntroAnimation onFinish={() => setIntroDone(true)} />}
 
-      {/* Homepage always present (masked reveal) */}
-      <Home introDone={introDone} />
+      <SmoothScroll>
+        {/* Homepage always present (masked reveal) */}
+        <Home introDone={introDone} />
 
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Testimonials />
-      <Contact />
-      <Footer />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </SmoothScroll>
     </div>
   );
 }

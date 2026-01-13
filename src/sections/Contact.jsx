@@ -9,6 +9,7 @@ import emailjs from "@emailjs/browser";
 
 // Importing Particles Background (same as Home component)
 import ParticlesBackground from "../components/ParticlesBackground.jsx";
+import Contact3DScene from "../components/Contact3DScene";
 
 // Importing the contact image asset
 import Astra from "../assets/Astra.png";
@@ -87,8 +88,7 @@ export default function Contact() {
       id="contact" className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
       {/* Particles Background */}
       <ParticlesBackground />
-
-  
+      <Contact3DScene />
 
       {/* Contact Section Content */}
       <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-10">
