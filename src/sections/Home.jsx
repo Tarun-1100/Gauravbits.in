@@ -34,7 +34,7 @@ const glowVariants = {
 
 const Home = React.forwardRef((props, ref) => {
   const roles = useMemo(
-    () => ["Software Developer", "Web Developer", "Content Creator"],
+    () => ["Data Engineer", "ML Engineer", "Data Architect"],
     []
   );
   const [index, setIndex] = useState(0);
@@ -137,9 +137,9 @@ const Home = React.forwardRef((props, ref) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              I turn complex ideas into seamless, high-impact web experiences —
-              building modern, scalable, and lightning-fast applications that
-              make a difference.
+              I architect scalable data pipelines and build intelligent systems —
+              transforming raw data into actionable insights with cutting-edge
+              ML models and real-time analytics that drive business impact.
             </motion.p>
 
             {/* buttons */}

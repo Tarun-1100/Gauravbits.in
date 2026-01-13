@@ -7,10 +7,15 @@ export default function Hero3DScene() {
     <div className="absolute inset-0 w-full h-full">
       <Canvas
         style={{ background: 'transparent' }}
+        dpr={[1, 2]}
+        performance={{ min: 0.5 }}
+        frameloop="demand"
         gl={{
           antialias: true,
           alpha: true,
-          powerPreference: "high-performance"
+          powerPreference: "high-performance",
+          stencil: false,
+          depth: true
         }}
       >
         <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={50} />
