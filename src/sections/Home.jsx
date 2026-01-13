@@ -117,7 +117,7 @@ const Home = React.forwardRef((props, ref) => {
 
             {/* name */}
             <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text
               bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63] drop-shadow-lg"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -126,7 +126,7 @@ const Home = React.forwardRef((props, ref) => {
               Hello, I&apos;m
               <br />
               <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
-                Gaurav Gupta
+                Tarun Kumar
               </span>
             </motion.h1>
 
